@@ -1,13 +1,17 @@
 import React from "react";
 import "./temp.css";
 
-const OpenPage = () => {
+const OpenPage = props => {
+  const onClicked = e => {
+    props.onClicked();
+  };
+
   return (
-    <div className="container">
+    <div className={`container ${props.className}`}>
       <div className="car-wrapper">
         <div className="car-wrapper_inner">
           <div className="car_outter">
-            <div className="car">
+            <div className="car" onClick={onClicked}>
               <div className="body">
                 <div></div>
               </div>

@@ -72,6 +72,37 @@ body {
   overflow: hidden;
 }
 
+.slide-out-right {
+  -webkit-animation: slide-out-right 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: slide-out-right 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+@-webkit-keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+
 .container .car-wrapper {
   display: table-cell;
   vertical-align: middle;
@@ -79,11 +110,12 @@ body {
 }
 
 .car {
+  cursor: pointer;
   width: 20em;
   height: 12.5em;
   position: relative;
   opacity: 1;
-  margin-top: 285px;
+  margin-top: 320px;
   margin-left: auto;
   margin-right: auto;
   z-index: 4;
