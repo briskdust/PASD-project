@@ -11,14 +11,7 @@ const App = () => {
     setClicked(prevState => !prevState);
   };
 
-  return clicked ? (
-    <HomePage />
-  ) : (
-    <OpenPage
-      onClicked={onClicked}
-      className={clicked ? "slide-out-right" : ""}
-    />
-  );
+  return clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />;
 };
 
 export default App;

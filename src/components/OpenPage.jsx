@@ -7,7 +7,7 @@ const OpenPage = props => {
   };
 
   return (
-    <div className={`container ${props.className}`}>
+    <div className={`container`}>
       <div className="car-wrapper">
         <div className="car-wrapper_inner">
           <div className="car_outter">
@@ -26,7 +26,7 @@ const OpenPage = props => {
                 <div className="light-front"></div>
                 <div className="antenna"></div>
                 <div className="parcel">
-                  <div className="cone"></div>
+                  <div className="box"></div>
                 </div>
               </div>
               <div>

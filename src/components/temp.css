@@ -418,50 +418,26 @@ body {
   height: 4.375em;
   border: 3px solid rgba(246, 200, 102, 0.31);
   border-radius: 50%;
-  -webkit-transform: rotate(-30deg);
-  -moz-transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg);
-  -o-transform: rotate(-30deg);
-  transform: rotate(-30deg);
 }
 
-.car .parcel .cone {
+.car .parcel .box {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -20%);
-  -moz-transform: translate(-50%, -20%);
-  -ms-transform: translate(-50%, -20%);
-  -o-transform: translate(-50%, -20%);
-  transform: translate(-50%, -20%);
-  border-right: 1.125em solid transparent;
-  border-left: 1.125em solid transparent;
-  border-top: 2.5em solid #f4b224;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 35px;
+  background-color: orange;
 }
 
-.car .parcel .cone:after {
+.car .parcel .box::before {
   content: "";
   position: absolute;
-  width: 1.25em;
-  height: 1.25em;
-  background: #00c0a8;
-  border-radius: 50%;
-  top: -3.4375em;
-  left: 0px;
-  z-index: -1;
-}
-
-.car .parcel .cone:before {
-  content: "";
-  position: absolute;
-  width: 1.25em;
-  height: 1.25em;
-  background: #ffd132;
-  border-radius: 50%;
-  top: -3.4375em;
-  left: -1.25em;
-  z-index: -1;
-  box-shadow: 10px -5px 0px 0px #ff9a9a;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: brown;
+  width: 10px;
+  height: 20px;
 }
 
 .wind {
