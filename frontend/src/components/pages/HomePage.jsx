@@ -2,7 +2,10 @@ import sanityClient from "../../client";
 import { Route, NavLink } from "react-router-dom";
 import Menu from "../../styles/Menu.styled";
 
+import { useState } from "react";
+
 const HomePage = () => {
+  const [isClicked, setClicked] = useState(false);
   const doc = {
     _type: "order",
     name: "briskdust",
@@ -15,6 +18,11 @@ const HomePage = () => {
 
   const trialPatch = () => {
     sanityClient.create(doc);
+  };
+
+  const showLogin = e => {
+    e.preventDefault();
+    setClicked(true);
   };
   return (
     <Menu>
@@ -33,7 +41,7 @@ const HomePage = () => {
                   <NavLink to="/delivery">Delivery</NavLink>
                 </li>
                 <li>
-                  <button>register</button>
+                  <button onClick={showLogin}>register</button>
                 </li>
               </ul>
             </nav>
