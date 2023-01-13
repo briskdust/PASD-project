@@ -4,13 +4,38 @@ import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import CloseIcon from "@mui/icons-material/Close";
+import sanityClient from "../client";
+
+import { useRef } from "react";
 
 const LoginForm = props => {
   const nothing = () => {};
+  const usernameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
 
   const close = () => {
     props.closed();
   };
+
+  const login = e => {
+    e.preventDefault();
+  };
+
+  const register = e => {
+    e.preventDefault();
+
+    const doc = {
+      _type: "user",
+      username: usernameRef.current.value,
+      email: emailRef.current.value,
+    };
+    sanityClient.create(doc);
+
+    usernameRef.current.value = "";
+    emailRef.current.value = "";
+  };
+
   return (
     <Login>
       <input
@@ -33,7 +58,7 @@ const LoginForm = props => {
               </i>{" "}
               USERNAME
             </div>
-            <input className="text" type="text" />
+            <input className="text" type="text" ref={usernameRef} />
           </div>
           <div className="input">
             <div className="title">
@@ -42,10 +67,10 @@ const LoginForm = props => {
               </i>{" "}
               PASSWORD
             </div>
-            <input className="text" type="password" />
+            <input className="text" type="password" ref={passwordRef} />
           </div>
           <div className="input">
-            <button>Enter</button>
+            <button onClick={login}>Enter</button>
           </div>
         </div>
         <div className="page signup">
@@ -59,7 +84,7 @@ const LoginForm = props => {
               </i>{" "}
               NAME
             </div>
-            <input className="text" type="text" />
+            <input className="text" type="text" ref={usernameRef} />
           </div>
           <div className="input">
             <div className="title">
@@ -68,10 +93,10 @@ const LoginForm = props => {
               </i>{" "}
               EMAIL
             </div>
-            <input className="text" type="password" />
+            <input className="text" type="text" ref={emailRef} />
           </div>
           <div className="input">
-            <button>SIGN ME UP!</button>
+            <button onClick={register}>SIGN ME UP!</button>
           </div>
         </div>
       </div>
