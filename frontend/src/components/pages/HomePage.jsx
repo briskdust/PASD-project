@@ -18,14 +18,6 @@ const HomePage = () => {
   };
   return (
     <Menu>
-      <div className="video-bg">
-        <video width="320" height="240" autoplay loop muted>
-          <source
-            src="https://assets.codepen.io/3364143/7btrrd.mp4"
-            type="video/mp4"
-          ></source>
-        </video>
-      </div>
       <div className="app">
         <div className="header">
           <div className="header-menu">
@@ -39,6 +31,9 @@ const HomePage = () => {
                 </li>
                 <li>
                   <NavLink to="/delivery">Delivery</NavLink>
+                </li>
+                <li>
+                  <button>register</button>
                 </li>
               </ul>
             </nav>
