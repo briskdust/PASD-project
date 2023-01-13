@@ -1,6 +1,7 @@
 import sanityClient from "../../client";
 import { Route, NavLink } from "react-router-dom";
 import Menu from "../../styles/Menu.styled";
+import Delivery from "./Delivery";
 
 import { useState } from "react";
 
@@ -47,6 +48,13 @@ const HomePage = () => {
             </nav>
           </div>
         </div>
+      </div>
+      <div>
+        <Route path="/place-order"></Route>
+        <Route path="/tracking"></Route>
+        <Route path="/delivery">
+          <Delivery />
+        </Route>
       </div>
     </Menu>
   );

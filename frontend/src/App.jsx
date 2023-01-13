@@ -15,8 +15,8 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <LoginModal />
-      {/* {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />} */}
+      {/* <LoginModal /> */}
+      {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />}
     </>
   );
 };
