@@ -2,7 +2,7 @@ import React from "react";
 import OpenPage from "./components/OpenPage";
 import { useState } from "react";
 import HomePage from "./components/pages/HomePage";
-import "./styles/temp.css";
+import GlobalStyle from "./styles/GlobalStyle";
 
 const App = () => {
   const [clicked, setClicked] = useState(false);
@@ -11,7 +11,12 @@ const App = () => {
     setClicked(prevState => !prevState);
   };
 
-  return clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />;
+  return (
+    <>
+      <GlobalStyle />
+      {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />}
+    </>
+  );
 };
 
 export default App;

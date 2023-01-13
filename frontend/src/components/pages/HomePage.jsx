@@ -1,7 +1,6 @@
-import "../../styles/temp.css";
 import sanityClient from "../../client";
-import MainHeader from "../MainHeader";
-import { Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
+import Menu from "../../styles/Menu.styled";
 
 const HomePage = () => {
   const doc = {
@@ -18,12 +17,35 @@ const HomePage = () => {
     sanityClient.create(doc);
   };
   return (
-    <>
-      <MainHeader />
-      <Route path="/place-order"></Route>
-      <Route path="/tracking"></Route>
-      <Route path="/delivery"></Route>
-    </>
+    <Menu>
+      <div className="video-bg">
+        <video width="320" height="240" autoplay loop muted>
+          <source
+            src="https://assets.codepen.io/3364143/7btrrd.mp4"
+            type="video/mp4"
+          ></source>
+        </video>
+      </div>
+      <div className="app">
+        <div className="header">
+          <div className="header-menu">
+            <nav>
+              <ul>
+                <li>
+                  <NavLink to="/place-order">Place Order</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/tracking">Track order</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/delivery">Delivery</NavLink>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </Menu>
   );
 };
 

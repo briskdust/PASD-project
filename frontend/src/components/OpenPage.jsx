@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/temp.css";
+import Car from "../styles/Car.styled";
 
 const OpenPage = props => {
   const onClicked = e => {
@@ -7,7 +7,7 @@ const OpenPage = props => {
   };
 
   return (
-    <div className="container">
+    <Car>
       <div className="car-wrapper">
         <div className="car-wrapper_inner">
           <div className="car_outter">
@@ -51,7 +51,7 @@ const OpenPage = props => {
         <div className="bg bg-3"></div>
         <div className="ground"></div>
       </div>
-    </div>
+    </Car>
   );
 };
 
