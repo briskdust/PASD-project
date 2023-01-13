@@ -5,7 +5,7 @@ const Modal = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 9999;
+  z-index: 20;
   width: 100%;
   height: 100%;
   padding-top: 100px;
@@ -14,20 +14,17 @@ const Modal = styled.div`
   -webkit-transition: 0.5s;
   overflow: auto;
   transition: all 0.3s linear;
+  /* when open */
+  overflow: hidden;
 
-  .modal-open {
-    overflow: hidden;
-  }
+  backdrop-filter: blur(2px);
+
+  /* when closed */
   .is-hidden {
     display: none;
   }
   .is-visuallyHidden {
     opacity: 0;
-  }
-
-  .is-blurred {
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
   }
 `;
 

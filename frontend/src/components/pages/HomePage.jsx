@@ -2,14 +2,21 @@ import sanityClient from "../../client";
 import { Route, NavLink } from "react-router-dom";
 import Menu from "../../styles/Menu.styled";
 import Delivery from "./Delivery";
+import ReactDom from "react-dom";
 
 import { useState } from "react";
+import LoginForm from "../LoginForm";
+import LoginModal from "../LoginModal";
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
   const doc = {
     _type: "order",
     name: "briskdust",
+  };
+
+  const setChildClick = bool => {
+    setClicked(bool);
   };
 
   sanityClient
@@ -52,10 +59,14 @@ const HomePage = () => {
       <div>
         <Route path="/place-order"></Route>
         <Route path="/tracking"></Route>
-        <Route path="/delivery">
-          <Delivery />
-        </Route>
+        <Route path="/delivery">{/* <Delivery /> */}</Route>
       </div>
+      {isClicked
+        ? ReactDom.createPortal(
+            <LoginModal />,
+            document.getElementById("modal-root")
+          )
+        : ""}
     </Menu>
   );
 };

@@ -73,6 +73,12 @@ const Login = styled.div`
     color: white;
   }
 
+  .close-icon {
+    margin-left: 200px;
+    cursor: pointer;
+    color: white;
+  }
+
   button {
     cursor: pointer;
     background: rgba(0, 0, 0, 0.5);
