@@ -1,5 +1,7 @@
 import "../../styles/temp.css";
 import sanityClient from "../../client";
+import MainHeader from "../MainHeader";
+import { Route } from "react-router-dom";
 
 const HomePage = () => {
   const doc = {
@@ -15,7 +17,14 @@ const HomePage = () => {
   const trialPatch = () => {
     sanityClient.create(doc);
   };
-  return <button onClick={trialPatch}></button>;
+  return (
+    <>
+      <MainHeader />
+      <Route path="/place-order"></Route>
+      <Route path="/tracking"></Route>
+      <Route path="/delivery"></Route>
+    </>
+  );
 };
 
 export default HomePage;

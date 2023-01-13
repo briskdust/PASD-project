@@ -7,7 +7,7 @@ const OpenPage = props => {
   };
 
   return (
-    <div className={`container`}>
+    <div className="container">
       <div className="car-wrapper">
         <div className="car-wrapper_inner">
           <div className="car_outter">
