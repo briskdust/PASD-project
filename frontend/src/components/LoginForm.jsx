@@ -7,6 +7,10 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const LoginForm = props => {
   const nothing = () => {};
+
+  const close = () => {
+    props.closed();
+  };
   return (
     <Login>
       <input
@@ -20,7 +24,7 @@ const LoginForm = props => {
       <div className="pages">
         <div className="page">
           <div className="input">
-            <i className="close-icon">
+            <i className="close-icon" id="close" onClick={close}>
               <CloseIcon />
             </i>
             <div className="title">
@@ -46,7 +50,7 @@ const LoginForm = props => {
         </div>
         <div className="page signup">
           <div className="input">
-            <i className="close-icon">
+            <i className="close-icon" id="close" onClick={close}>
               <CloseIcon />
             </i>
             <div className="title">

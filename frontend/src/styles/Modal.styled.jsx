@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Modal = styled.div`
-  display: block;
+  display: ${props => (props.close ? "none" : "block")};
   position: fixed;
   left: 0;
   top: 0;

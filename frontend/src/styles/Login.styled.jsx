@@ -13,6 +13,7 @@ const Login = styled.div`
   -webkit-animation: hi 0.5s;
   animation: hi 0.5s;
   -webkit-transform: translateZ(0px);
+  border-radius: 10px;
 
   * {
     box-sizing: border-box;

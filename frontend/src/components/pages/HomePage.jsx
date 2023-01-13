@@ -5,18 +5,18 @@ import Delivery from "./Delivery";
 import ReactDom from "react-dom";
 
 import { useState } from "react";
-import LoginForm from "../LoginForm";
 import LoginModal from "../LoginModal";
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
+
   const doc = {
     _type: "order",
     name: "briskdust",
   };
 
-  const setChildClick = bool => {
-    setClicked(bool);
+  const setChildClick = () => {
+    setClicked(false);
   };
 
   sanityClient
@@ -63,7 +63,7 @@ const HomePage = () => {
       </div>
       {isClicked
         ? ReactDom.createPortal(
-            <LoginModal />,
+            <LoginModal close={!isClicked} setClose={setChildClick} />,
             document.getElementById("modal-root")
           )
         : ""}
