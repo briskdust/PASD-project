@@ -1,5 +1,5 @@
-import "./temp.css";
-import sanityClient from "../client";
+import "../../styles/temp.css";
+import sanityClient from "../../client";
 
 const HomePage = () => {
   const doc = {

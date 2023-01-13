@@ -1,8 +1,8 @@
 import React from "react";
 import OpenPage from "./components/OpenPage";
 import { useState } from "react";
-import HomePage from "./components/HomePage";
-import "./components/temp.css";
+import HomePage from "./components/pages/HomePage";
+import "./styles/temp.css";
 
 const App = () => {
   const [clicked, setClicked] = useState(false);

@@ -1,5 +1,5 @@
 import React from "react";
-import "./temp.css";
+import "../styles/temp.css";
 
 const OpenPage = props => {
   const onClicked = e => {
