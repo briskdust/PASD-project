@@ -27,13 +27,16 @@ const LoginForm = props => {
 
     const doc = {
       _type: "user",
+      user_type: "Premium",
       username: usernameRef.current.value,
       email: emailRef.current.value,
+      password: passwordRef.current.value,
     };
     sanityClient.create(doc);
 
     usernameRef.current.value = "";
     emailRef.current.value = "";
+    passwordRef.current.value = "";
   };
 
   return (
@@ -58,7 +61,16 @@ const LoginForm = props => {
               </i>{" "}
               USERNAME
             </div>
-            <input className="text" type="text" ref={usernameRef} />
+            <input className="text" type="text" />
+          </div>
+          <div className="input">
+            <div className="title">
+              <i className="material-icons">
+                <EmailIcon />
+              </i>{" "}
+              EMAIL
+            </div>
+            <input className="text" type="text" />
           </div>
           <div className="input">
             <div className="title">
@@ -67,7 +79,7 @@ const LoginForm = props => {
               </i>{" "}
               PASSWORD
             </div>
-            <input className="text" type="password" ref={passwordRef} />
+            <input className="text" type="password" />
           </div>
           <div className="input">
             <button onClick={login}>Enter</button>
@@ -82,7 +94,7 @@ const LoginForm = props => {
               <i className="material-icons">
                 <PersonIcon />
               </i>{" "}
-              NAME
+              USERNAME
             </div>
             <input className="text" type="text" ref={usernameRef} />
           </div>
@@ -94,6 +106,15 @@ const LoginForm = props => {
               EMAIL
             </div>
             <input className="text" type="text" ref={emailRef} />
+          </div>
+          <div className="input">
+            <div className="title">
+              <i className="material-icons">
+                <LockIcon />
+              </i>{" "}
+              PASSWORD
+            </div>
+            <input className="text" type="password" ref={passwordRef} />
           </div>
           <div className="input">
             <button onClick={register}>SIGN ME UP!</button>

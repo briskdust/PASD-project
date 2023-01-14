@@ -24,10 +24,6 @@ const HomePage = () => {
     .then(data => console.log(data))
     .catch(console.error);
 
-  const trialPatch = () => {
-    sanityClient.create(doc);
-  };
-
   const showLogin = e => {
     e.preventDefault();
     setClicked(true);
