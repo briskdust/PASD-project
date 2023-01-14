@@ -6,6 +6,7 @@ import ReactDom from "react-dom";
 
 import { useState } from "react";
 import LoginModal from "../LoginModal";
+import TrackingDetail from "../TrackingDetail";
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
@@ -59,6 +60,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="content">
+          {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
         </div>
       </div>

@@ -4,8 +4,10 @@ const Tracking = styled.div`
   font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 
   .container {
+    border-radius: 10px;
     background-color: orange;
     height: 600px;
     width: 500px;
