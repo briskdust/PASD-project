@@ -10,11 +10,6 @@ import LoginModal from "../LoginModal";
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
 
-  const doc = {
-    _type: "order",
-    name: "briskdust",
-  };
-
   const setChildClick = () => {
     setClicked(false);
   };
@@ -28,6 +23,7 @@ const HomePage = () => {
     e.preventDefault();
     setClicked(true);
   };
+
   return (
     <Menu>
       <div className="app">

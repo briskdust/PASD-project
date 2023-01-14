@@ -13,6 +13,7 @@ const LoginForm = props => {
   const usernameRef = useRef("");
   const emailRef = useRef("");
   const passwordRef = useRef("");
+  const loginRef = useRef("");
 
   const close = () => {
     props.closed();
@@ -61,7 +62,7 @@ const LoginForm = props => {
               </i>{" "}
               USERNAME
             </div>
-            <input className="text" type="text" />
+            <input className="text" type="text" ref={loginRef} />
           </div>
           <div className="input">
             <div className="title">
@@ -82,7 +83,7 @@ const LoginForm = props => {
             <input className="text" type="password" />
           </div>
           <div className="input">
-            <button onClick={login}>Enter</button>
+            <button onClick={close}>Enter</button>
           </div>
         </div>
         <div className="page signup">
