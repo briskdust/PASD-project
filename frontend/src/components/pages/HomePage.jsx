@@ -9,9 +9,14 @@ import LoginModal from "../LoginModal";
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const setChildClick = () => {
     setClicked(false);
+  };
+
+  const setChildLogin = () => {
+    setLoggedIn(true);
   };
 
   sanityClient
@@ -40,9 +45,10 @@ const HomePage = () => {
                 <li>
                   <NavLink to="/delivery">Delivery</NavLink>
                 </li>
-                <li>
-                  <button onClick={showLogin}>register</button>
-                </li>
+
+                <button onClick={showLogin}>
+                  {isLoggedIn ? "Welcome Kevin" : "register / login"}
+                </button>
               </ul>
             </nav>
           </div>
@@ -55,7 +61,11 @@ const HomePage = () => {
       </div>
       {isClicked
         ? ReactDom.createPortal(
-            <LoginModal close={!isClicked} setClose={setChildClick} />,
+            <LoginModal
+              close={!isClicked}
+              setClose={setChildClick}
+              setLogin={setChildLogin}
+            />,
             document.getElementById("modal-root")
           )
         : ""}

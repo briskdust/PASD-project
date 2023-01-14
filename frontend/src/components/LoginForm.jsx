@@ -6,6 +6,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import CloseIcon from "@mui/icons-material/Close";
 import sanityClient from "../client";
 
+import { sha256 } from "js-sha256";
+
 import { useRef } from "react";
 
 const LoginForm = props => {
@@ -23,15 +25,21 @@ const LoginForm = props => {
     e.preventDefault();
   };
 
+  const setLogin = () => {
+    props.login();
+    props.closed();
+  };
+
   const register = e => {
     e.preventDefault();
+    const password = sha256(passwordRef.current.value);
 
     const doc = {
       _type: "user",
       user_type: "Premium",
       username: usernameRef.current.value,
       email: emailRef.current.value,
-      password: passwordRef.current.value,
+      password: password,
     };
     sanityClient.create(doc);
 
@@ -83,7 +91,7 @@ const LoginForm = props => {
             <input className="text" type="password" />
           </div>
           <div className="input">
-            <button onClick={close}>Enter</button>
+            <button onClick={setLogin}>Enter</button>
           </div>
         </div>
         <div className="page signup">

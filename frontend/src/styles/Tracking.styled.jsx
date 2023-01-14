@@ -80,6 +80,8 @@ const Tracking = styled.div`
   .row {
     margin-top: 5px;
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
   }
 
   img {

@@ -16,8 +16,8 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <TrackingDetail />
-      {/* {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />} */}
+      {/* <TrackingDetail /> */}
+      {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />}
     </>
   );
 };

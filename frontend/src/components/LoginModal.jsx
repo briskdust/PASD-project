@@ -4,7 +4,7 @@ import Modal from "../styles/Modal.styled";
 const LoginModal = props => {
   return (
     <Modal close={props.close}>
-      <LoginForm closed={props.setClose} />
+      <LoginForm closed={props.setClose} login={props.setLogin} />
     </Modal>
   );
 };

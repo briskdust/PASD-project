@@ -28,9 +28,11 @@ const Menu = styled.div`
 
     button {
       background: none;
+      font-size: 15px;
+      color: white;
       border: none;
       cursor: pointer;
-      margin-left: auto;
+      margin-left: 820px;
     }
   }
 
