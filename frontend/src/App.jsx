@@ -3,8 +3,8 @@ import OpenPage from "./components/OpenPage";
 import { useState } from "react";
 import HomePage from "./components/pages/HomePage";
 import GlobalStyle from "./styles/GlobalStyle";
-import LoginModal from "./components/LoginModal";
 import TrackingDetail from "./components/TrackingDetail";
+import Delivery from "./components/pages/Delivery";
 
 const App = () => {
   const [clicked, setClicked] = useState(false);
@@ -16,6 +16,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      {/* <Delivery /> */}
       {/* <TrackingDetail /> */}
       {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />}
     </>

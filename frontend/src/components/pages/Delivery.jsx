@@ -1,24 +1,14 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Flex,
-  HStack,
-  IconButton,
-  Input,
-  SkeletonText,
-  Text,
-} from "@chakra-ui/react";
 import { FaLocationArrow, FaTimes } from "react-icons/fa";
 
 import {
   useJsApiLoader,
   GoogleMap,
-  Marker,
   Autocomplete,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+
 import { useRef, useState } from "react";
+import MapSet from "../../styles/MapSet.styled";
 
 const center = { lat: 53.219383, lng: 6.566502 };
 
@@ -33,16 +23,11 @@ const Delivery = () => {
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
 
-  /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
-  /** @type React.MutableRefObject<HTMLInputElement> */
   const destinationRef = useRef();
+
   if (!isLoaded) {
-    return (
-      <div>
-        <a>Loading...</a>
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   async function calculateRoute() {
@@ -55,7 +40,7 @@ const Delivery = () => {
       origin: originRef.current.value,
       destination: destinationRef.current.value,
       // eslint-disable-next-line no-undef
-      travelMode: google.maps.TravelMode.DRIVING, // Can be DRIVING or other travel modes
+      travelMode: google.maps.TravelMode.DRIVING,
     });
     setDirectionsResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
@@ -71,15 +56,8 @@ const Delivery = () => {
   }
 
   return (
-    <Flex
-      position="relative"
-      flexDirection="column"
-      alignItems="center"
-      h="100vh"
-      w="100vw"
-    >
-      <Box position="center" left={0} top={0} h="50%" w="50%">
-        {/* Google Map Box */}
+    <MapSet>
+      <div className="map-box">
         <GoogleMap
           center={center}
           zoom={15}
@@ -92,63 +70,49 @@ const Delivery = () => {
           }}
           onLoad={map => setMap(map)}
         >
-          {/* <Marker position={center} /> // code can be used to display a marker on the map */}
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
         </GoogleMap>
-      </Box>
-      <Box
-        p={4}
-        borderRadius="lg"
-        m={4}
-        bgColor="white"
-        shadow="base"
-        minW="container.md"
-        zIndex="1"
-      >
-        <HStack spacing={2} justifyContent="space-between">
-          <Box flexGrow={1}>
-            <Autocomplete>
-              <Input type="text" placeholder="Origin" ref={originRef} />
-            </Autocomplete>
-          </Box>
-          <Box flexGrow={1}>
-            <Autocomplete>
-              <Input
-                type="text"
-                placeholder="Destination"
-                ref={destinationRef}
-              />
-            </Autocomplete>
-          </Box>
+      </div>
 
-          <ButtonGroup>
-            <Button colorScheme="pink" type="submit" onClick={calculateRoute}>
+      <div className="botton-set">
+        <div className="f-row">
+          <Autocomplete>
+            <input type="text" placeholder="Origin" ref={originRef} />
+          </Autocomplete>
+          <Autocomplete>
+            <input type="text" placeholder="Destination" ref={destinationRef} />
+          </Autocomplete>
+
+          <div className="button-grp">
+            <button
+              className="calc-route clickable"
+              type="submit"
+              onClick={calculateRoute}
+            >
               Calculate Route
-            </Button>
-            <IconButton
-              aria-label="center back"
-              icon={<FaTimes />}
-              onClick={clearRoute}
-            />
-          </ButtonGroup>
-        </HStack>
-        <HStack spacing={4} mt={4} justifyContent="space-between">
-          <Text>Distance: {distance} </Text>
-          <Text>Duration: {duration} </Text>
-          <IconButton
-            aria-label="center back"
-            icon={<FaLocationArrow />}
-            isRound
-            onClick={() => {
-              map.panTo(center);
-              map.setZoom(15);
-            }}
-          />
-        </HStack>
-      </Box>
-    </Flex>
+            </button>
+            <i
+              className="clickable"
+              onClick={() => {
+                map.panTo(center);
+                map.setZoom(15);
+              }}
+            >
+              <FaLocationArrow />
+            </i>
+            <i className="clear-route clickable" onClick={clearRoute}>
+              <FaTimes />
+            </i>
+          </div>
+        </div>
+        <div className="s-row">
+          <div className="distance">Distance: {distance} </div>
+          <div className="duration">Duration: {duration} </div>
+        </div>
+      </div>
+    </MapSet>
   );
 };
 

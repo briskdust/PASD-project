@@ -1,5 +1,5 @@
 import sanityClient from "../../client";
-import { Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Menu from "../../styles/Menu.styled";
 import Delivery from "./Delivery";
 import ReactDom from "react-dom";
@@ -10,6 +10,11 @@ import LoginModal from "../LoginModal";
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [currentTab, setCurrentTab] = useState("");
+
+  const changeTab = e => {
+    setCurrentTab(e.currentTarget.id);
+  };
 
   const setChildClick = () => {
     setClicked(false);
@@ -36,28 +41,26 @@ const HomePage = () => {
           <div className="header-menu">
             <nav>
               <ul>
-                <li>
+                <li id="order" onClick={changeTab}>
                   <NavLink to="/place-order">Place Order</NavLink>
                 </li>
-                <li>
+                <li id="tracking" onClick={changeTab}>
                   <NavLink to="/tracking">Track order</NavLink>
                 </li>
-                <li>
+                <li id="delivery" onClick={changeTab}>
                   <NavLink to="/delivery">Delivery</NavLink>
                 </li>
 
-                <button onClick={showLogin}>
+                <button className="log-btn" onClick={showLogin}>
                   {isLoggedIn ? "Welcome Kevin" : "register / login"}
                 </button>
               </ul>
             </nav>
           </div>
         </div>
-      </div>
-      <div>
-        <Route path="/place-order"></Route>
-        <Route path="/tracking"></Route>
-        <Route path="/delivery">{/* <Delivery /> */}</Route>
+        <div className="content">
+          {currentTab === "delivery" && <Delivery />}
+        </div>
       </div>
       {isClicked
         ? ReactDom.createPortal(

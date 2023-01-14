@@ -26,7 +26,7 @@ const Menu = styled.div`
     font-size: 15px;
     font-weight: 500;
 
-    button {
+    .log-btn {
       background: none;
       font-size: 15px;
       color: white;
