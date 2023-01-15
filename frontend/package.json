@@ -2,6 +2,7 @@
   "name": "pasd-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://pasd-webshop-api.onrender.com",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -13,6 +14,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
+    "axios": "^1.2.2",
     "framer-motion": "^8.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
