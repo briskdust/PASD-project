@@ -10,6 +10,7 @@ const Menu = styled.div`
 
   width: 100%;
   height: 100vh;
+  z-index: 2000;
 
   .app {
     background-color: rgba(16 18 27 / 40%);
@@ -25,11 +26,13 @@ const Menu = styled.div`
     font-size: 15px;
     font-weight: 500;
 
-    button {
+    .log-btn {
       background: none;
+      font-size: 15px;
+      color: white;
       border: none;
       cursor: pointer;
-      margin-left: auto;
+      margin-left: 820px;
     }
   }
 
@@ -53,7 +56,7 @@ const Menu = styled.div`
   .header-menu a {
     padding: 20px 30px;
     text-decoration: none;
-    color: #c9c8c8; // rgb(113 119 144 / 78%);
+    color: #c9c8c8;
     border-bottom: 2px solid transparent;
     transition: 0.3s;
   }
