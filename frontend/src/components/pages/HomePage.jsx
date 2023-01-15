@@ -7,6 +7,7 @@ import ReactDom from "react-dom";
 import { useState } from "react";
 import LoginModal from "../LoginModal";
 import TrackingDetail from "../TrackingDetail";
+import PlaceOrder from "./PlaceOrder";
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
@@ -60,6 +61,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="content">
+          {currentTab === "place-order" && <PlaceOrder />}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
         </div>
