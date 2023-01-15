@@ -11,6 +11,9 @@ const Payment = () => {
   const express_img =
     "https://dl.dropboxusercontent.com/s/f5hyn6u05ktql8d/amex-icon-6902.png";
 
+  const alipay_img =
+    "https://logos-download.com/wp-content/uploads/2022/01/Alipay_Logo.png";
+
   const [img_state, setImg] = useState(visa_img);
 
   const changeImg = e => {
@@ -20,6 +23,9 @@ const Payment = () => {
         break;
       case "mcard":
         setImg(mcard_img);
+        break;
+      case "alipay":
+        setImg(alipay_img);
         break;
       default:
         setImg(express_img);
@@ -41,6 +47,7 @@ const Payment = () => {
                 >
                   <option value="visa">Visa</option>
                   <option value="mcard">Master Card</option>
+                  <option value="alipay">Alipay</option>
                   <option value="express">American Express</option>
                 </select>
               </div>
