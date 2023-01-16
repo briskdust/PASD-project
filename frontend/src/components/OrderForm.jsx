@@ -1,16 +1,15 @@
 import axios from "axios";
+import { useState } from "react";
+import sanityClient from "../client";
 
 const OrderForm = () => {
-  // axios.defaults.baseURL = "https://pasd-webshop-api.onrender.com";
-  // axios.defaults.headers["X-API-KEY"] = "hBqPEeyJNXexUZfgJRCZ";
+  const [orders, setOrders] = useState([]);
 
   const options = {
     method: "GET",
-    url: "https://pasd-webshop-api.onrender.com/api/order/",
+    url: "http://localhost:5000/orders",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": "hBqPEeyJNXexUZfgJRCZ",
-      "Access-Control-Allow-Headers": "Authorization",
     },
   };
 
@@ -21,25 +20,19 @@ const OrderForm = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        setOrders(response.data.orders);
+
+        for (const order of response.data.orders) {
+          const doc = {
+            _type: "order",
+            ...order,
+          };
+          sanityClient.create(doc);
+        }
       })
       .catch(function (error) {
         console.error(error);
       });
-
-    // axios({
-    //   url: "/api/order/",
-    //   method: "get",
-    //   headers: {
-    //     "x-api-key": "hBqPEeyJNXexUZfgJRCZ",
-    //     "Access-Control-Allow-Credentials": true,
-    //     "Content-Type": "application/json",
-    //   },
-    //   credentials: "same-origin",
-    // })
-    //   .then(res => res.data)
-    //   .then(data => {
-    //     console.log(data);
-    //   });
   };
 
   return <button onClick={getOrders}>get orders</button>;
