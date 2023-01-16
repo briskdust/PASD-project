@@ -1,9 +1,15 @@
-import ReactDOM from "react";
+import react from "react";
 
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey("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");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const PlaceOrder = () => {
+
+    function sendMessage() {
+        sgMail.send(message).catch((error) => {
+            console.log("Error: ", error)
+        })
+    }
 
     const message = {
         to: 'dctknap@gmail.com',
@@ -14,13 +20,11 @@ const PlaceOrder = () => {
         <p>hello world</p>`
     }
 
-    sgMail.send(message).catch((error) => {
-        console.log("Error: ", error)
-    })
+    
 
 
     return (
-        <div/>
+        <div><button onClick={sendMessage}>SEND!</button></div>
     );
 }
 

@@ -61,7 +61,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="content">
-          {currentTab === "place-order" && <PlaceOrder />}
+          {currentTab === "order" && <PlaceOrder />}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
         </div>
