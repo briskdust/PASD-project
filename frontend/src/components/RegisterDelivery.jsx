@@ -17,48 +17,39 @@ const RegisterDelivery = props => {
       console.log(data);
       setOrders(data);
     });
-    //   for (const order of data) {
-    //     const doc = {
-    //       order_id: order.id,
-    //       price_in_cents: 0,
-    //       expected_delivery_datetime: newTime,
-    //     };
-
-    //     axios({
-    //       url: "http://localhost:5000/delivery",
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       data: doc,
-    //     });
-    //   }
-    // })
-    // .catch(err => console.log("oops"));
   };
 
   const registerOrder = e => {
-    console.log(e.target.id);
-    const doc = {
-      order_id: e.target.id,
-      price_in_cents: 0,
-      expected_delivery_datetime: newTime,
-    };
+    for (const order of props.orders) {
+      const doc = {
+        order_id: order.id,
+        price_in_cents: 0,
+        expected_delivery_datetime: newTime,
+      };
 
-    console.log(doc);
+      console.log(doc);
 
-    axios({
-      url: "http://localhost:5000/delivery",
-      method: "post",
-      data: doc,
-    });
+      axios({
+        url: "http://localhost:5000/delivery",
+        method: "post",
+        data: doc,
+      })
+        .then(res => res.data)
+        .then(data => {
+          const doc = {
+            _type: "delivery",
+            order_id: data.order_id,
+            id: data.id,
+            cost_in_cents: data.cost_in_cents,
+            status: "EXP",
+          };
+
+          sanityClient.create(doc);
+        });
+    }
   };
 
-  return (
-    <button key={props.order.id} id={props.order.id} onClick={registerOrder}>
-      register this order {props.order.id}
-    </button>
-  );
+  return <button onClick={registerOrder}>register all orders</button>;
 };
 
 export default RegisterDelivery;

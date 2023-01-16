@@ -110,8 +110,9 @@ const HomePage = () => {
             <button onClick={getOrders}>fetch all orders</button>
           )}
           {currentTab === "order" &&
-            orders.length > 0 &&
-            orders.map(order => <RegisterDelivery order={order} />)}
+            orders.length > 0 && ( // show all the order IDs here
+              <RegisterDelivery orders={orders} />
+            )}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
         </div>
