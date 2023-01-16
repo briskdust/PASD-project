@@ -57,10 +57,12 @@ const Delivery = () => {
     // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
     await sanityClient.fetch(`*[_type == "delivery"&&id==${idRef.current.value}]`).then(data => {
+      if (JSON.stringify(data) === "[]") {
+        alert("This is not a valid delivery")
+        return;
+      }
       setDelivery(data[0])
     })
-    console.log(delivery)
-    console.log(delivery.status)
     if (delivery.status === "REJ") {
       alert("This is not a valid delivery")
       return;
@@ -69,7 +71,8 @@ const Delivery = () => {
       alert("This delivery is not yet ready for pickup.\n\nCheck back later.")
       return;
     }
-    await sanityClient.fetch(`*[_type == "order"&&id==${delivery.order_id}]`).then(data => {
+    sanityClient.fetch(`*[_type == "order"&&id==${delivery.order_id}]`).then(data => {
+      console.log(data[0].sender_info);
       setOrig(data[0].sender_info);
       setDest(data[0].receiver_info);
     })
