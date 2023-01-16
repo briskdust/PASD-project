@@ -98,6 +98,11 @@ export default {
             title: 'Tracking ID'
         },
         {
+            name: 'email',
+            type: 'string',
+            title: 'Email'
+        },
+        {
             name: 'send_date',
             type: 'datetime',
             title: 'Send Date'
