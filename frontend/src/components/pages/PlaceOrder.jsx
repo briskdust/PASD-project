@@ -17,18 +17,6 @@ const PlaceOrder = () => {
         sanityClient.create(order)
     }
 
-    const message = {
-        to: 'dctknap@gmail.com',
-        from: 'test@test.com',
-        subject: 'test',
-        html: `
-        <p><strong>Name:</strong>Bob</p>
-        <p>hello world</p>`
-    }
-
-    
-
-
     return (
         <div><button onClick={sendMessage}>SEND!</button></div>
     );
