@@ -1,9 +1,11 @@
 import axios from "axios";
 import sanityClient from "../client";
 import uuid from "react-uuid";
+import { useState } from "react";
 
 const OrderForm = () => {
   const orders = [];
+  const [dbOrders, setOrders] = useState([]);
 
   const options = {
     method: "GET",
@@ -38,6 +40,8 @@ const OrderForm = () => {
           }
         }
 
+        setOrders(orders);
+
         for (const exOrders of orders) {
           sanityClient.createIfNotExists(exOrders);
         }
@@ -47,7 +51,11 @@ const OrderForm = () => {
       });
   };
 
-  return <button onClick={getOrders}>get orders</button>;
+  return (
+    <div>
+      <button onClick={getOrders}>get orders</button>
+    </div>
+  );
 };
 
 export default OrderForm;

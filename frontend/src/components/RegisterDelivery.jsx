@@ -67,11 +67,3 @@ const RegisterDelivery = () => {
 };
 
 export default RegisterDelivery;
-
-/*
-{
-  "price_in_cents": 0,
-  "expected_delivery_datetime": "2023-01-16T15:34:02.782Z",
-  "order_id": 0
-}
-*/

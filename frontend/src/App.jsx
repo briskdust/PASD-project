@@ -21,8 +21,8 @@ const App = () => {
       <GlobalStyle />
 
       {/* <Payment /> */}
-      {/* <OrderForm />
-      <RegisterDelivery /> */}
+      {/* <OrderForm /> */}
+      {/* <RegisterDelivery /> */}
       {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />}
     </>
   );
