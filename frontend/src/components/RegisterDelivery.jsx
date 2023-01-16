@@ -2,7 +2,7 @@ import axios from "axios";
 import sanityClient from "../client";
 import { useState } from "react";
 
-const RegisterDelivery = () => {
+const RegisterDelivery = props => {
   let currentTime = new Date().getTime();
   let updatedTIme = new Date(currentTime + 2 * 60 * 60 * 1000);
   const newTime = updatedTIme.toISOString();
@@ -55,14 +55,9 @@ const RegisterDelivery = () => {
   };
 
   return (
-    <>
-      <button onClick={fetchAllOrders}>fetch all orders</button>
-      {orders.map(order => (
-        <button key={order.id} id={order.id} onClick={registerOrder}>
-          register this order {order.id}
-        </button>
-      ))}
-    </>
+    <button key={props.order.id} id={props.order.id} onClick={registerOrder}>
+      register this order {props.order.id}
+    </button>
   );
 };
 

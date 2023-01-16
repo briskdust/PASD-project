@@ -2,6 +2,7 @@ import axios from "axios";
 import sanityClient from "../client";
 import uuid from "react-uuid";
 import { useState } from "react";
+import RegisterDelivery from "./RegisterDelivery";
 
 const OrderForm = () => {
   const orders = [];
@@ -54,6 +55,7 @@ const OrderForm = () => {
   return (
     <div>
       <button onClick={getOrders}>get orders</button>
+      {dbOrders.length === 0 ? "" : <RegisterDelivery />}
     </div>
   );
 };
