@@ -1,111 +1,106 @@
 export default {
-    name: 'order',
-    type: 'document',
-    title: 'Order',
-    fields: [
+  name: 'order',
+  type: 'document',
+  title: 'Order',
+  fields: [
+    {
+      name: 'id',
+      type: 'number',
+      title: 'ID',
+    },
+    {
+      name: 'is_breakable',
+      type: 'boolean',
+      title: 'Is Breakable',
+    },
+    {
+      name: 'is_perishable',
+      type: 'boolean',
+      title: 'Is Perishable',
+    },
+    {
+      name: 'x_in_mm',
+      type: 'number',
+      title: 'Length in mm',
+    },
+    {
+      name: 'y_in_mm',
+      type: 'number',
+      title: 'Width in mm',
+    },
+    {
+      name: 'z_in_mm',
+      type: 'number',
+      title: 'Height in mm',
+    },
+    {
+      name: 'sender_info',
+      type: 'object',
+      title: 'Sender Info',
+      fields: [
         {
-            name: 'is_breakable',
-            type: 'boolean',
-            title: 'Is Breakable'
+          name: 'name',
+          type: 'string',
+          title: 'Name',
         },
         {
-            name: 'is_perishable',
-            type: 'boolean',
-            title: 'Is Perishable'
+          name: 'street_and_number',
+          type: 'string',
+          title: 'Street and Number',
         },
         {
-            name: 'x_in_mm',
-            type: 'number',
-            title: 'Length in mm'
+          name: 'zipcode',
+          type: 'string',
+          title: 'Zipcode',
         },
         {
-            name: 'y_in_mm',
-            type: 'number',
-            title: 'Width in mm'
+          name: 'city',
+          type: 'string',
+          title: 'City',
         },
         {
-            name: 'z_in_mm',
-            type: 'number',
-            title: 'Height in mm'
+          name: 'country',
+          type: 'string',
+          title: 'Country',
+        },
+      ],
+    },
+    {
+      name: 'receiver_info',
+      type: 'object',
+      title: 'Receiver Info',
+      fields: [
+        {
+          name: 'name',
+          type: 'string',
+          title: 'Name',
         },
         {
-            name: 'sender_info',
-            type: 'object',
-            title: 'Sender Info',
-            fields: [
-                {
-                    name: 'name',
-                    type: 'string',
-                    title: 'Name'
-                },
-                {
-                    name: 'street_and_number',
-                    type: 'string',
-                    title: 'Street and Number'
-                },
-                {
-                    name: 'zipcode',
-                    type: 'string',
-                    title: 'Zipcode'
-                },
-                {
-                    name: 'city',
-                    type: 'string',
-                    title: 'City'
-                },
-                {
-                    name: 'country',
-                    type: 'string',
-                    title: 'Country'
-                }
-            ]
+          name: 'street_and_number',
+          type: 'string',
+          title: 'Street and Number',
         },
         {
-            name: 'receiver_info',
-            type: 'object',
-            title: 'Receiver Info',
-            fields: [
-                {
-                    name: 'name',
-                    type: 'string',
-                    title: 'Name'
-                },
-                {
-                    name: 'street_and_number',
-                    type: 'string',
-                    title: 'Street and Number'
-                },
-                {
-                    name: 'zipcode',
-                    type: 'string',
-                    title: 'Zipcode'
-                },
-                {
-                    name: 'city',
-                    type: 'string',
-                    title: 'City'
-                },
-                {
-                    name: 'country',
-                    type: 'string',
-                    title: 'Country'
-                }
-            ]
+          name: 'zipcode',
+          type: 'string',
+          title: 'Zipcode',
         },
         {
-            name: 'tracking_id',
-            type: 'string',
-            title: 'Tracking ID'
+          name: 'city',
+          type: 'string',
+          title: 'City',
         },
         {
-            name: 'send_date',
-            type: 'datetime',
-            title: 'Send Date'
+          name: 'country',
+          type: 'string',
+          title: 'Country',
         },
-        {
-            name: 'id',
-            type: 'number',
-            title: 'ID'
-        }
-    ]
+      ],
+    },
+    {
+      name: 'send_date',
+      type: 'datetime',
+      title: 'Send Date',
+    },
+  ],
 }
