@@ -7,6 +7,7 @@ import TrackingDetail from "./components/TrackingDetail";
 import Delivery from "./components/pages/Delivery";
 import OrderForm from "./components/OrderForm";
 import Payment from "./components/Payment";
+import RegisterDelivery from "./components/RegisterDelivery";
 
 const App = () => {
   const [clicked, setClicked] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
 
       {/* <Payment /> */}
       <OrderForm />
+      <RegisterDelivery />
       {/* {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />} */}
     </>
   );

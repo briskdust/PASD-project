@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
 import sanityClient from "../client";
+import uuid from "react-uuid";
 
 const OrderForm = () => {
-  const [orders, setOrders] = useState([]);
+  const orders = [];
 
   const options = {
     method: "GET",
@@ -19,15 +19,27 @@ const OrderForm = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
-        setOrders(response.data.orders);
-
         for (const order of response.data.orders) {
           const doc = {
             _type: "order",
             ...order,
+            _id: uuid(order.id),
           };
-          sanityClient.create(doc);
+
+          let counter = 0;
+
+          for (const exOrder of orders) {
+            if (exOrder.id !== order.id) {
+              counter++;
+            }
+          }
+          if (counter === orders.length) {
+            orders.push(doc);
+          }
+        }
+
+        for (const exOrders of orders) {
+          sanityClient.createIfNotExists(exOrders);
         }
       })
       .catch(function (error) {
