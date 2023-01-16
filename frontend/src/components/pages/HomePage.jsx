@@ -7,6 +7,7 @@ import ReactDom from "react-dom";
 import { useState } from "react";
 import LoginModal from "../LoginModal";
 import TrackingDetail from "../TrackingDetail";
+import OrderForm from "../OrderForm";
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
@@ -43,7 +44,7 @@ const HomePage = () => {
             <nav>
               <ul>
                 <li id="order" onClick={changeTab}>
-                  <NavLink to="/place-order">Place Order</NavLink>
+                  <NavLink to="/place-order">Register Order</NavLink>
                 </li>
                 <li id="tracking" onClick={changeTab}>
                   <NavLink to="/tracking">Track order</NavLink>
@@ -60,6 +61,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="content">
+          {currentTab === "order" && <OrderForm />}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
         </div>

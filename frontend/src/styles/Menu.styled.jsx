@@ -55,6 +55,7 @@ const Menu = styled.div`
 
   .header-menu a {
     padding: 20px 30px;
+    -webkit-text-decoration: none;
     text-decoration: none;
     color: #c9c8c8;
     border-bottom: 2px solid transparent;
