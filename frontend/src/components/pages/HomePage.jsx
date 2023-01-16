@@ -7,6 +7,7 @@ import ReactDom from "react-dom";
 import { useState } from "react";
 import LoginModal from "../LoginModal";
 import TrackingDetail from "../TrackingDetail";
+import TrackingPage from "../TrackingPage";
 import OrderForm from "../OrderForm";
 
 const HomePage = () => {
@@ -62,7 +63,7 @@ const HomePage = () => {
         </div>
         <div className="content">
           {currentTab === "order" && <OrderForm />}
-          {currentTab === "tracking" && <TrackingDetail />}
+          {currentTab === "tracking" && <TrackingPage />}
           {currentTab === "delivery" && <Delivery />}
         </div>
       </div>
