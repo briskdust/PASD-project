@@ -6,6 +6,7 @@ const ContactForm = () => {
   const emailRef = useRef("");
   const nameRef = useRef("");
   const messageRef = useRef("");
+  const oIDRef = useRef("");
 
   const sendEmail = e => {
     e.preventDefault();
@@ -18,8 +19,9 @@ const ContactForm = () => {
         "template_r4uz3at",
         {
           name: nameRef.current.value,
-          email: recipient,
+          reply_to: recipient,
           message: messageRef.current.value,
+          orderId: oIDRef.current.value,
         },
         "nQ0BhHK3pHWIfwcvc"
       )
@@ -75,6 +77,7 @@ const ContactForm = () => {
                 </div>
                 <div className="app-form-group">
                   <input
+		    REF{oIDRef}
                     className="app-form-control"
                     placeholder="DELIVERY ID"
                   />
