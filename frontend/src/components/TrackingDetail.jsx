@@ -15,21 +15,36 @@ const TrackingDetail = props => {
     DEL: "Delivered",
   };
 
-  const getDestination = ID => {
-    sanityClient.fetch(`*[_type == "order"&&id==${ID}]`).then(data => {
-      console.log(data[0].receiver_info.street_and_number);
-      setDest(data[0].receiver_info.street_and_number);
-    });
-  };
+  // const getDestination = ID => {
+  //   sanityClient.fetch(`*[_type == "order"&&id==${ID}]`).then(data => {
+  //     console.log(data[0].receiver_info.street_and_number);
+  //     setDest(data[0].receiver_info.street_and_number);
+  //   });
+  // };
+
+  // const searchDelivery = () => {
+  //   const dID = parseInt(deliveryRef.current.value);
+  //   sanityClient.fetch(`*[_type == "delivery"&&id==${dID}]`).then(data => {
+  //     console.log(data);
+  //     setDelivery(data[0]);
+  //     getDestination(data[0].order_id);
+  //   });
+  // };
 
   const searchDelivery = () => {
-    const dID = parseInt(deliveryRef.current.value);
-    sanityClient.fetch(`*[_type == "delivery"&&id==${dID}]`).then(data => {
+    sanityClient.fetch(`{'delivery':
+        *[_type == "delivery" && order_id == 1315]
+        {expected_deliver_datetime, status},
+      'destination':
+        *[_type == "order" && id == 1315]
+        {sender_info,receiver_info}
+      }`)
+    .then(data => {
       console.log(data);
-      setDelivery(data[0]);
-      getDestination(data[0].order_id);
-    });
-  };
+      setDelivery(data.delivery[0]);
+      setDest(data.destination[0].receiver_info.street_and_number);
+    })
+  }
 
   return (
     <>
