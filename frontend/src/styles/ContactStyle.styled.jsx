@@ -1,150 +1,237 @@
 import styled from "styled-components";
 
 const ContactStyle = styled.div`
-  @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-  background-color: #e6e6e6;
-  font-size: 100%;
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-
-  div,
-  textarea,
+  button,
   input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.4px;
   }
 
-  max-width: 510px;
-  min-width: 324px;
-  margin: 50px auto 0px;
-  background-color: #fff;
-  border: 1px solid #cfcfcf;
-  border-bottom: 3px solid #ccc;
-  height: 100%;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
 
-  .row {
+  .container {
+    flex: 0 1 700px;
+    padding: 10px;
+    margin-top: 150px;
+  }
+
+  .screen {
+    position: relative;
+    background: #3e3e3e;
+    border-radius: 15px;
+  }
+
+  .screen:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: -1;
+  }
+
+  .screen-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: #4d4d4f;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .screen-header-left {
+    margin-right: auto;
+  }
+
+  .screen-header-button {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 3px;
+    border-radius: 8px;
+    background: white;
+  }
+
+  .screen-header-button.close {
+    background: #ed1c6f;
+  }
+
+  .screen-header-button.maximize {
+    background: #e8e925;
+  }
+
+  .screen-header-button.minimize {
+    background: #74c54f;
+  }
+
+  .screen-header-right {
+    display: flex;
+  }
+
+  .screen-header-ellipsis {
+    width: 3px;
+    height: 3px;
+    margin-left: 2px;
+    border-radius: 8px;
+    background: #999;
+  }
+
+  .screen-body {
+    display: flex;
+  }
+
+  .screen-body-item {
+    flex: 1;
+    padding: 50px;
+  }
+
+  .screen-body-item.left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-title {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #ea1d6f;
+    font-size: 26px;
+  }
+
+  .app-title:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 25px;
+    height: 4px;
+    background: #ea1d6f;
+  }
+
+  .app-contact {
+    margin-top: auto;
+    font-size: 8px;
+    color: #888;
+  }
+
+  .app-form-group {
+    margin-bottom: 15px;
+  }
+
+  .app-form-group.message {
+    margin-top: 40px;
+  }
+
+  .app-form-group.buttons {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .app-form-control {
     width: 100%;
-    margin: 0 0 1em 0;
-    padding: 0 2.5em;
-  }
-  .row.header {
-    padding: 1.5em 2.5em;
-    border-bottom: 1px solid #ccc;
-    background: url(https://images2.imgbox.com/a5/2e/m3lRbCCA_o.jpg) left -80px;
-    color: #fff;
-  }
-  .row.body {
-    padding: 0.5em 2.5em 1em;
-  }
-
-  .pull-right {
-    float: right;
-  }
-
-  h1 {
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    display: inline-block;
-    font-weight: 100;
-    font-size: 2.8125em;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    margin: 0 0 0.1em 0;
-    padding: 0 0 0.4em 0;
-  }
-
-  h3 {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-size: 1.25em;
-    margin: 1em 0 0.4em 0;
-  }
-
-  .btn {
-    font-size: 1.0625em;
-    display: inline-block;
-    padding: 0.74em 1.5em;
-    margin: 1.5em 0 0;
-    color: #fff;
-    border-width: 0 0 0 0;
-    border-bottom: 5px solid;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #666;
+    color: #ddd;
+    font-size: 14px;
     text-transform: uppercase;
-    background-color: #b3b3b3;
-    border-bottom-color: #8c8c8c;
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-  }
-  .btn:hover {
-    background-color: #bfbfbf;
-  }
-  .btn.btn-submit {
-    background-color: #4f6fad;
-    border-bottom-color: #374d78;
-  }
-  .btn.btn-submit:hover {
-    background-color: #5f7db6;
+    outline: none;
+    transition: border-color 0.2s;
   }
 
-  form {
-    max-width: 100%;
-    display: block;
+  .app-form-control::-moz-placeholder {
+    color: #666;
   }
-  form ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+
+  .app-form-control:-ms-input-placeholder {
+    color: #666;
   }
-  form ul li {
-    margin: 0 0 0.25em 0;
-    clear: both;
-    display: inline-block;
-    width: 100%;
+
+  .app-form-control::placeholder {
+    color: #666;
   }
-  form ul li:last-child {
-    margin: 0;
+
+  .app-form-control:focus {
+    border-bottom-color: #ddd;
   }
-  form ul li p {
-    margin: 0;
-    padding: 0;
-    float: left;
+
+  .app-form-button {
+    background: none;
+    border: none;
+    color: #ea1d6f;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
   }
-  form ul li p.right {
-    float: right;
+
+  .app-form-button:hover {
+    color: #b9134f;
   }
-  form ul li .divider {
-    margin: 0.5em 0 0.5em 0;
-    border: 0;
-    height: 1px;
-    width: 100%;
-    display: block;
-    background-color: #4f6fad;
-    background-image: linear-gradient(to right, #ee9cb4, #4f6fad);
+
+  .credits {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: #ffa4bd;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
   }
-  form ul li .req {
-    color: #ee9cb4;
+
+  .credits-link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
   }
-  form label {
-    display: block;
-    margin: 0 0 0.5em 0;
-    color: #4f6fad;
-    font-size: 1em;
+
+  .dribbble {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
   }
-  form input {
-    margin: 0 0 0.5em 0;
-    border: 1px solid #ccc;
-    padding: 6px 10px;
-    color: #555;
-    font-size: 1em;
+
+  @media screen and (max-width: 520px) {
+    .screen-body {
+      flex-direction: column;
+    }
+
+    .screen-body-item.left {
+      margin-bottom: 30px;
+    }
+
+    .app-title {
+      flex-direction: row;
+    }
+
+    .app-title span {
+      margin-right: 12px;
+    }
+
+    .app-title:after {
+      display: none;
+    }
   }
-  form textarea {
-    border: 1px solid #ccc;
-    padding: 6px 10px;
-    width: 100%;
-    color: #555;
-  }
-  form small {
-    color: #4f6fad;
-    margin: 0 0 0 0.5em;
+
+  @media screen and (max-width: 600px) {
+    .screen-body {
+      padding: 40px;
+    }
+
+    .screen-body-item {
+      padding: 0;
+    }
   }
 `;
 
