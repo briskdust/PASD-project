@@ -9,6 +9,7 @@ import uuid from "react-uuid";
 import { useState } from "react";
 import LoginModal from "../LoginModal";
 import TrackingDetail from "../TrackingDetail";
+import Contact from "../Contact";
 import OrderForm from "../OrderForm";
 import RegisterDelivery from "../RegisterDelivery";
 
@@ -97,6 +98,9 @@ const HomePage = () => {
                 <li id="delivery" onClick={changeTab}>
                   <NavLink to="/delivery">Delivery</NavLink>
                 </li>
+                <li id="contact" onClick={changeTab}>
+                  <NavLink to="/contact">Contact</NavLink>
+                </li>
 
                 <button className="log-btn" onClick={showLogin}>
                   {isLoggedIn ? "Welcome Kevin" : "register / login"}
@@ -115,6 +119,7 @@ const HomePage = () => {
             )}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
+          {currentTab === "contact" && <Contact />}
         </div>
       </div>
       {isClicked
