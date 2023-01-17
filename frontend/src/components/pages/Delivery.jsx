@@ -12,6 +12,10 @@ import MapSet from "../../styles/MapSet.styled";
 
 const center = { lat: 53.219383, lng: 6.566502 };
 
+
+const warehouse = { lat: 53.20256071791289, lng: 6.555334591553193 }
+
+
 const Delivery = props => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyCa3J2cp1n4MT37i3SeXFAXs0Rn3lct7TQ",
@@ -22,7 +26,7 @@ const Delivery = props => {
   const [dataDest, setDest] = useState("");
   const [delivery, setDelivery] = useState("");
   const [location, setLocation] = useState({});
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
   const [totalDistance, setTotalDistance] = useState("");
@@ -30,6 +34,7 @@ const Delivery = props => {
   const [duration, setDuration] = useState("");
   const [totalDuration, setTotalDuration] = useState("");
   const [dropOffDuration, setDropOffDuration] = useState("");
+  const [directions, setDirections] = useState({});
 
   const idRef = useRef();
 
@@ -85,6 +90,7 @@ const Delivery = props => {
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
     });
+    
     setDirectionsResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
