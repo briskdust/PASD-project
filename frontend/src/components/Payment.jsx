@@ -1,5 +1,5 @@
-import "./temp.css";
 import { useState } from "react";
+import PaymentStyle from "../styles/PaymentStyle.styled";
 
 const Payment = () => {
   const mcard_img =
@@ -33,7 +33,7 @@ const Payment = () => {
   };
 
   return (
-    <div className="credit-info">
+    <PaymentStyle>
       <div className="credit-info-content">
         <table className="half-input-table">
           <tr>
@@ -80,7 +80,7 @@ const Payment = () => {
         </table>
         <button className="pay-btn">Checkout</button>
       </div>
-    </div>
+    </PaymentStyle>
   );
 };
 

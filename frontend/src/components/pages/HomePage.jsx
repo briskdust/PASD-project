@@ -12,6 +12,7 @@ import TrackingDetail from "../TrackingDetail";
 import Contact from "../Contact";
 import OrderForm from "../OrderForm";
 import RegisterDelivery from "../RegisterDelivery";
+import ContactForm from "../ContactForm";
 
 const fetchedOrders = [];
 
@@ -119,7 +120,7 @@ const HomePage = () => {
             )}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "delivery" && <Delivery />}
-          {currentTab === "contact" && <Contact />}
+          {currentTab === "contact" && <ContactForm />}
         </div>
       </div>
       {isClicked

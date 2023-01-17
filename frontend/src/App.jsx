@@ -8,6 +8,7 @@ import Delivery from "./components/pages/Delivery";
 import OrderForm from "./components/OrderForm";
 import Payment from "./components/Payment";
 import RegisterDelivery from "./components/RegisterDelivery";
+import ContactForm from "./components/ContactForm";
 
 const App = () => {
   const [clicked, setClicked] = useState(false);
@@ -23,6 +24,7 @@ const App = () => {
       {/* <Payment /> */}
       {/* <OrderForm /> */}
       {/* <RegisterDelivery /> */}
+      {/* <ContactForm /> */}
       {clicked ? <HomePage /> : <OpenPage onClicked={onClicked} />}
     </>
   );

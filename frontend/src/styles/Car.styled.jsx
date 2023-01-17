@@ -77,7 +77,7 @@ const Car = styled.div`
     height: 12.5em;
     position: relative;
     opacity: 1;
-    margin-top: 320px;
+    margin-top: 520px;
     margin-left: auto;
     margin-right: auto;
     z-index: 4;
