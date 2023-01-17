@@ -92,7 +92,7 @@ const HomePage = () => {
             <nav>
               <ul>
                 {isLoggedIn === "" ? (
-                  <li id="place-order" onClicke={changeTab}>
+                  <li id="place-order" onClick={changeTab}>
                     <NavLink to="/place-order">Place Order</NavLink>
                   </li>
                 ) : (
