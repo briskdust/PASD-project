@@ -40,8 +40,8 @@ const ContactForm = () => {
           <div className="screen-header">
             <div className="screen-header-left">
               <div className="screen-header-button close"></div>
-              <div class="screen-header-button maximize"></div>
-              <div class="screen-header-button minimize"></div>
+              <div className="screen-header-button maximize"></div>
+              <div className="screen-header-button minimize"></div>
             </div>
             <div className="screen-header-right">
               <div className="screen-header-ellipsis"></div>
@@ -55,9 +55,7 @@ const ContactForm = () => {
                 <span>CONTACT</span>
                 <span>US</span>
               </div>
-              <div className="app-contact">
-                CONTACT INFO : +62 81 314 928 595
-              </div>
+              <div className="app-contact">CONTACT INFO : +46 73 518 22 22</div>
             </div>
             <div className="screen-body-item">
               <div className="app-form">
@@ -78,7 +76,7 @@ const ContactForm = () => {
                 <div className="app-form-group">
                   <input
                     className="app-form-control"
-                    placeholder="CONTACT NO"
+                    placeholder="DELIVERY ID"
                   />
                 </div>
                 <div className="app-form-group message">
