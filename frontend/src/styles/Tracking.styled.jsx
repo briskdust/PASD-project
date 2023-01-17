@@ -8,7 +8,7 @@ const Tracking = styled.div`
 
   .container {
     border-radius: 10px;
-    background-color: orange;
+    background-color: white;
     height: 600px;
     width: 500px;
   }
@@ -33,7 +33,6 @@ const Tracking = styled.div`
 
   .content {
     margin-top: 10px;
-    background-color: pink;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +47,6 @@ const Tracking = styled.div`
   }
 
   .border-left {
-    background-color: purple;
     border-style: solid;
     border-width: 0 0 0 0.2em;
     border-color: #343779;

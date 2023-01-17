@@ -26,18 +26,30 @@ const LoginForm = props => {
   };
 
   const setLogin = () => {
-    props.login();
+    const userType = loginRef.current.value.includes("$ADMIN")
+      ? "ADMIN"
+      : "DRIVER";
+
+    console.log(userType);
+    props.login(userType);
     props.closed();
   };
 
   const register = e => {
     e.preventDefault();
     const password = sha256(passwordRef.current.value);
+    const userType = usernameRef.current.value.includes("$ADMIN:")
+      ? "ADMIN"
+      : "DRIVER";
+
+    const userName = usernameRef.current.value.includes("$ADMIN:")
+      ? usernameRef.current.value.substring(7)
+      : usernameRef.current.value;
 
     const doc = {
       _type: "user",
-      user_type: "Premium",
-      username: usernameRef.current.value,
+      user_type: userType,
+      username: userName,
       email: emailRef.current.value,
       password: password,
     };
