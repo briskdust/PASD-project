@@ -2,6 +2,7 @@ import sanityClient from "../../client";
 import { NavLink } from "react-router-dom";
 import Menu from "../../styles/Menu.styled";
 import Delivery from "./Delivery";
+import DeliveryUser from "./DeliveryUser";
 import ReactDom from "react-dom";
 import axios from "axios";
 import uuid from "react-uuid";
@@ -119,8 +120,9 @@ const HomePage = () => {
               <RegisterDelivery orders={orders} />
             )}
           {currentTab === "tracking" && <TrackingDetail />}
-          {currentTab === "delivery" && <Delivery />}
           {currentTab === "contact" && <ContactForm />}
+          {currentTab === "delivery" && isLoggedIn && <Delivery />}
+          {currentTab === "delivery" && !isLoggedIn && <DeliveryUser />}
         </div>
       </div>
       {isClicked
