@@ -16,19 +16,38 @@ const TrackingDetail = props => {
   };
 
   const getDestination = ID => {
-    sanityClient.fetch(`*[_type == "order"&&id==${ID}]`).then(data => {
-      console.log(data[0].receiver_info.street_and_number);
-      setDest(data[0].receiver_info.street_and_number);
-    });
+    if (ID.toString().length < 10) {
+      sanityClient.fetch(`*[_type == "order"&&id==${ID}]`).then(data => {
+        console.log(data[0].receiver_info.street_and_number);
+        setDest(data[0].receiver_info.street_and_number);
+      });
+    } else {
+      sanityClient.fetch(`*[_type == "personal"&&id=="${ID}"]`).then(data => {
+        setDest(data[0].receiver_info.street_and_number);
+      });
+    }
   };
 
   const searchDelivery = () => {
-    const dID = parseInt(deliveryRef.current.value);
-    sanityClient.fetch(`*[_type == "delivery"&&id==${dID}]`).then(data => {
-      console.log(data);
-      setDelivery(data[0]);
-      getDestination(data[0].order_id);
-    });
+    if (deliveryRef.current.value.length < 10) {
+      const dID = parseInt(deliveryRef.current.value);
+      sanityClient.fetch(`*[_type == "delivery"&&id==${dID}]`).then(data => {
+        console.log(data);
+        setDelivery(data[0]);
+        getDestination(data[0].order_id);
+      });
+    } else {
+      const longID = deliveryRef.current.value;
+      console.log("running");
+      console.log(longID);
+      sanityClient
+        .fetch(`*[_type == "personal"&&id=="${longID}"]`)
+        .then(data => {
+          console.log(data);
+          setDelivery(data[0]);
+          getDestination(deliveryRef.current.value);
+        });
+    }
   };
 
   return (
