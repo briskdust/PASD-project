@@ -13,7 +13,7 @@ import {
 import { useRef, useState } from "react";
 import MapSet from "../../styles/MapSet.styled";
 
-const center = { lat: 53.219383, lng: 6.566502 };
+const center = { lat: 52.4326, lng: 5.3913 };
 
 const DeliveryUser = () => {
     const { isLoaded } = useJsApiLoader({
@@ -29,6 +29,7 @@ const DeliveryUser = () => {
     const [directionsResponse, setDirectionsResponse] = useState(null);
     const [distance, setDistance] = useState("");
     const [duration, setDuration] = useState("");
+    const [randomLatLng, setRandomLatLng] = useState("");
 
     const idRef = useRef();
 
@@ -45,52 +46,53 @@ const DeliveryUser = () => {
         const directionsService = new google.maps.DirectionsService();
         // eslint-disable-next-line no-undef
         const geocoder = new google.maps.Geocoder();
-        await sanityClient.fetch(`*[_type == "delivery"&&id==${idRef.current.value}]`).then(data => {
+        sanityClient.fetch(`*[_type == "delivery"&&id==${idRef.current.value}]`).then(data => {
             if (JSON.stringify(data) === "[]") {
                 alert("This is not a valid delivery")
                 return;
             }
-            setDelivery(data[0])
+            setDelivery(data[0]);
+            if (delivery.status === "REJ") {
+                alert("This is not a valid delivery")
+                return;
+            } else if (delivery.status === "EXP") {
+                clearRoute();
+                alert("This delivery is not yet ready for pickup.\n\nCheck back later.")
+                return;
+            }
         })
-        if (delivery.status === "REJ") {
-            alert("This is not a valid delivery")
-            return;
-        } else if (delivery.status === "EXP") {
-            clearRoute();
-            alert("This delivery is not yet ready for pickup.\n\nCheck back later.")
-            return;
-        }
         sanityClient.fetch(`*[_type == "order"&&id==${delivery.order_id}]`).then(data => {
             console.log(data[0].sender_info);
             setOrig(data[0].sender_info);
             setDest(data[0].receiver_info);
-        })
 
-        geocoder.geocode({ address: dataOrig.zipcode }, function (results, status) {
-            if (status === 'OK') {
-                const path = results[0].geometry.location;
-                geocoder.geocode({ address: dataDest.zipcode }, function (results1, status) {
-                    if (status === 'OK') {
-                        const path1 = results1[0].geometry.location;
-                        // eslint-disable-next-line no-undef
-                        const bounds = new google.maps.LatLngBounds();
-                        bounds.extend(path);
-                        bounds.extend(path1);
-                        const randomLatLng = bounds.getCenter();
-                        const results = directionsService.route({
-                            origin: randomLatLng,
-                            destination: dataDest.zipcode,
+            geocoder.geocode({ address: dataOrig.zipcode }, function (results, status) {
+                if (status === 'OK') {
+                    const path = results[0].geometry.location;
+                    geocoder.geocode({ address: dataDest.zipcode }, function (results1, status) {
+                        if (status === 'OK') {
+                            const path1 = results1[0].geometry.location;
                             // eslint-disable-next-line no-undef
-                            travelMode: google.maps.TravelMode.DRIVING,
-                        }).then(data => {
-                            setDirectionsResponse(data);
-                            setDistance(data.routes[0].legs[0].distance.text);
-                            setDuration(data.routes[0].legs[0].duration.text);
-                        });
-                    }
-                });
-            }
-        });
+                            const bounds = new google.maps.LatLngBounds();
+                            bounds.extend(path);
+                            bounds.extend(path1);
+                            const localRandomLatLng = bounds.getCenter();
+                            setRandomLatLng(bounds.getCenter());
+                            directionsService.route({
+                                origin: localRandomLatLng,
+                                destination: dataDest.zipcode,
+                                // eslint-disable-next-line no-undef
+                                travelMode: google.maps.TravelMode.DRIVING,
+                            }).then(data => {
+                                setDirectionsResponse(data);
+                                setDistance(data.routes[0].legs[0].distance.text);
+                                setDuration(data.routes[0].legs[0].duration.text);
+                            });
+                        }
+                    });
+                }
+            });
+        })        
     }
 
 
@@ -108,7 +110,7 @@ const DeliveryUser = () => {
             <div className="map-box">
                 <GoogleMap
                     center={center}
-                    zoom={15}
+                    zoom={7.55}
                     mapContainerStyle={{ width: "100%", height: "100%" }}
                     options={{
                         zoomControl: true,
@@ -139,17 +141,8 @@ const DeliveryUser = () => {
                         <i
                             className="clickable"
                             onClick={() => {
-                                // eslint-disable-next-line no-undef
-                                const geocoder = new google.maps.Geocoder();
-                                console.log(dataOrig.zipcode)
-                                geocoder.geocode({ address: dataOrig.zipcode }, function (results, status) {
-                                    if (status === 'OK') {
-                                        map.panTo(results[0].geometry.location);
-                                        map.setZoom(15);
-                                    } else {
-                                        console.log('Geocode was not successful for the following reason: ' + status);
-                                    }
-                                });
+                                map.panTo(randomLatLng);
+                                map.setZoom(13);
                             }}
                         >
                             <LocalShippingIcon />
