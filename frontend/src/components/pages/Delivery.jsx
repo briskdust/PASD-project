@@ -13,6 +13,8 @@ import MapSet from "../../styles/MapSet.styled";
 
 const center = { lat: 53.219383, lng: 6.566502 };
 
+const warehouse = { lat: 53.20256071791289, lng: 6.555334591553193 }
+
 const Delivery = () => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyCa3J2cp1n4MT37i3SeXFAXs0Rn3lct7TQ",
@@ -24,7 +26,7 @@ const Delivery = () => {
   const [dataDest, setDest] = useState("");
   const [delivery, setDelivery] = useState("");
   const [location, setLocation] = useState({});
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
   const [totalDistance, setTotalDistance] = useState("");
@@ -32,13 +34,14 @@ const Delivery = () => {
   const [duration, setDuration] = useState("");
   const [totalDuration, setTotalDuration] = useState("");
   const [dropOffDuration, setDropOffDuration] = useState("");
+  const [directions, setDirections] = useState({});
 
   const idRef = useRef();
 
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  
+
 
   async function calculateRoute() {
     if (idRef.current.value === "") {
@@ -76,14 +79,15 @@ const Delivery = () => {
       setOrig(data[0].sender_info);
       setDest(data[0].receiver_info);
     })
-  
+
     const results = await directionsService.route({
       origin: location,
-      waypoints: [{location: dataOrig.zipcode}],
+      waypoints: [{ location: dataOrig.zipcode }, { location: warehouse }],
       destination: dataDest.zipcode,
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
     });
+    
     setDirectionsResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
@@ -97,7 +101,7 @@ const Delivery = () => {
     const minutes = Math.floor((totalDuration % 3600) / 60);
     const durationFormat = `${hours} hour ${minutes} mins`;
     setTotalDuration(durationFormat);
-    }
+  }
 
   function clearRoute() {
     setDirectionsResponse(null);
@@ -134,8 +138,8 @@ const Delivery = () => {
 
       <div className="botton-set">
         <div className="f-row">
-            <label htmlFor="delivery-id">Delivery ID: </label>
-            <input id="delivery-id" type="text" placeholder="ID" ref={idRef} />
+          <label htmlFor="delivery-id">Delivery ID: </label>
+          <input id="delivery-id" type="text" placeholder="ID" ref={idRef} />
           <div className="button-grp">
             <button
               className="calc-route clickable"
