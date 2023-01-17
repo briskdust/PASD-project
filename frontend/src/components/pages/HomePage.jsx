@@ -10,16 +10,16 @@ import uuid from "react-uuid";
 import { useState } from "react";
 import LoginModal from "../LoginModal";
 import TrackingDetail from "../TrackingDetail";
-import Contact from "../Contact";
 import OrderForm from "../OrderForm";
 import RegisterDelivery from "../RegisterDelivery";
 import ContactForm from "../ContactForm";
+import PlaceOrder from "../PlaceOrder";
 
 const fetchedOrders = [];
 
 const HomePage = () => {
   const [isClicked, setClicked] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState("");
   const [currentTab, setCurrentTab] = useState("");
   const [orders, setOrders] = useState([]);
 
@@ -75,8 +75,8 @@ const HomePage = () => {
     setClicked(false);
   };
 
-  const setChildLogin = () => {
-    setLoggedIn(true);
+  const setChildLogin = userType => {
+    setLoggedIn(userType);
   };
 
   const showLogin = e => {
@@ -91,28 +91,48 @@ const HomePage = () => {
           <div className="header-menu">
             <nav>
               <ul>
-                <li id="order" onClick={changeTab}>
-                  <NavLink to="/place-order">Register Order</NavLink>
-                </li>
+                {isLoggedIn === "" ? (
+                  <li id="place-order" onClicke={changeTab}>
+                    <NavLink to="/place-order">Place Order</NavLink>
+                  </li>
+                ) : (
+                  ""
+                )}
+                {isLoggedIn === "ADMIN" ? (
+                  <li id="register-order" onClick={changeTab}>
+                    <NavLink to="/register-order">Register Order</NavLink>
+                  </li>
+                ) : (
+                  ""
+                )}
                 <li id="tracking" onClick={changeTab}>
                   <NavLink to="/tracking">Track order</NavLink>
                 </li>
-                <li id="delivery" onClick={changeTab}>
-                  <NavLink to="/delivery">Delivery</NavLink>
-                </li>
-                <li id="contact" onClick={changeTab}>
-                  <NavLink to="/contact">Contact</NavLink>
-                </li>
+                {isLoggedIn === "ADMIN" ? (
+                  ""
+                ) : (
+                  <li id="delivery" onClick={changeTab}>
+                    <NavLink to="/delivery">Delivery</NavLink>
+                  </li>
+                )}
+                {isLoggedIn === "" ? (
+                  <li id="contact" onClick={changeTab}>
+                    <NavLink to="/contact">Contact</NavLink>
+                  </li>
+                ) : (
+                  ""
+                )}
 
                 <button className="log-btn" onClick={showLogin}>
-                  {isLoggedIn ? "Welcome Kevin" : "register / login"}
+                  {isLoggedIn ? "Welcome" : "register / login"}
                 </button>
               </ul>
             </nav>
           </div>
         </div>
         <div className="content">
-          {currentTab === "order" && (
+          {currentTab === "place-order" && <PlaceOrder />}
+          {currentTab === "register-order" && (
             <button onClick={getOrders}>fetch all orders</button>
           )}
           {currentTab === "order" &&
@@ -121,8 +141,8 @@ const HomePage = () => {
             )}
           {currentTab === "tracking" && <TrackingDetail />}
           {currentTab === "contact" && <ContactForm />}
-          {currentTab === "delivery" && isLoggedIn && <Delivery />}
-          {currentTab === "delivery" && !isLoggedIn && <DeliveryUser />}
+          {currentTab === "delivery" && isLoggedIn === "DRIVER" && <Delivery />}
+          {currentTab === "delivery" && isLoggedIn === "" && <DeliveryUser />}
         </div>
       </div>
       {isClicked

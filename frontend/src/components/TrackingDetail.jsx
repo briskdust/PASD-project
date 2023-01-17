@@ -35,6 +35,8 @@ const TrackingDetail = props => {
     <>
       <label htmlFor="deliver-id">Deliver ID: </label>
       <input ref={deliveryRef} id="deliver-id" type="text" />
+      <label htmlFor="add-label">Attach label: </label>
+      <input type="file" />
       <button onClick={searchDelivery}>search</button>
       {JSON.stringify(delivery) === "{}" ? (
         ""
