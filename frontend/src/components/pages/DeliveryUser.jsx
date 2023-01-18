@@ -12,6 +12,8 @@ import { useRef, useState } from "react";
 import MapSet from "../../styles/MapSet.styled";
 
 const center = { lat: 52.4326, lng: 5.3913 };
+const warehouse = { lat: 53.20256071791289, lng: 6.555334591553193 }
+
 
 const DeliveryUser = () => {
     const { isLoaded } = useJsApiLoader({
@@ -106,6 +108,7 @@ const DeliveryUser = () => {
                                 directionsService
                                     .route({
                                         origin: localRandomLatLng,
+                                        waypoints: [{ location: warehouse }],
                                         destination: dataDest.zipcode,
                                         // eslint-disable-next-line no-undef
                                         travelMode: google.maps.TravelMode.DRIVING,
@@ -179,8 +182,8 @@ const DeliveryUser = () => {
                     </div>
                 </div>
                 <div className="s-row">
-                    <div className="distance">Pick-up Distance: {distance} </div>
-                    <div className="duration">Pick-up Duration: {duration} </div>
+                    <div className="distance">Distance: {distance} </div>
+                    <div className="duration">Duration: {duration} </div>
                 </div>
                 <div className="s-row">
                     <div className="distance">Delivery Status: {delivery.status} </div>
