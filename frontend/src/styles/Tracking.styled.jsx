@@ -89,6 +89,17 @@ const Tracking = styled.div`
     height: 240px;
     transform: translateX(-10px);
   }
+
+  .control-set {
+    margin-top: 5px;
+  }
+
+  .control-btn {
+    background: none;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+  }
 `;
 
 export default Tracking;

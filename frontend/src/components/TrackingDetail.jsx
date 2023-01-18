@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import Tracking from "../styles/Tracking.styled";
 import sanityClient from "../client";
+import axios from "axios";
 
 const TrackingDetail = props => {
+  axios.defaults.url = "http://localhost:5000";
   const [delivery, setDelivery] = useState({});
   const [dest, setDest] = useState("");
   const deliveryRef = useRef("");
@@ -50,6 +52,113 @@ const TrackingDetail = props => {
     }
   };
 
+  function changeStatus(e) {
+    e.preventDefault();
+
+    if (deliveryRef.current.value.length < 10) {
+      if (e.target.id === "label") {
+        axios({
+          url: `/label/${deliveryRef.current.value}`,
+          method: "GET",
+        }).then(async res => {
+          sanityClient
+            .patch(delivery["_id"])
+            .set({ status: "RFP" })
+            .commit()
+            .then(() => {
+              console.log("runneddddd");
+              sanityClient
+                .fetch(
+                  `*[_type == "delivery" && id == ${parseInt(
+                    deliveryRef.current.value
+                  )}]`
+                )
+                .then(res => {
+                  setDelivery(res[0]);
+                });
+            });
+        });
+      } else if (e.target.id === "pickup") {
+        axios({
+          url: `/pickup/${deliveryRef.current.value}`,
+          method: "GET",
+        }).then(async res => {
+          sanityClient
+            .patch(delivery["_id"])
+            .set({ status: "TRN" })
+            .commit()
+            .then(() => {
+              console.log("runneddddd");
+              sanityClient
+                .fetch(
+                  `*[_type == "delivery" && id == ${parseInt(
+                    deliveryRef.current.value
+                  )}]`
+                )
+                .then(res => {
+                  setDelivery(res[0]);
+                });
+            });
+        });
+      } else {
+        axios({
+          url: `/delivered/${deliveryRef.current.value}`,
+          method: "GET",
+        }).then(async res => {
+          sanityClient
+            .patch(delivery["_id"])
+            .set({ status: "DEL" })
+            .commit()
+            .then(() => {
+              console.log("runneddddd");
+              sanityClient
+                .fetch(
+                  `*[_type == "delivery" && id == ${parseInt(
+                    deliveryRef.current.value
+                  )}]`
+                )
+                .then(res => {
+                  setDelivery(res[0]);
+                });
+            });
+        });
+      }
+    } else {
+      if (e.target.id === "label") {
+      } else if (e.target.id === "pickup") {
+        sanityClient
+          .patch(delivery["_id"])
+          .set({ status: "TRN" })
+          .commit()
+          .then(() => {
+            console.log("runneddddd");
+            sanityClient
+              .fetch(
+                `*[_type == "personal" && id == "${deliveryRef.current.value}"]`
+              )
+              .then(res => {
+                setDelivery(res[0]);
+              });
+          });
+      } else {
+        sanityClient
+          .patch(delivery["_id"])
+          .set({ status: "DEL" })
+          .commit()
+          .then(() => {
+            console.log("runneddddd");
+            sanityClient
+              .fetch(
+                `*[_type == "personal" && id == "${deliveryRef.current.value}"]`
+              )
+              .then(res => {
+                setDelivery(res[0]);
+              });
+          });
+      }
+    }
+  }
+
   return (
     <>
       <label htmlFor="deliver-id">Deliver ID: </label>
@@ -85,6 +194,33 @@ const TrackingDetail = props => {
                   <div className="">{dest}</div>
                 </div>
               </div>
+              {props.userType !== "" ? (
+                <div className="control-set">
+                  <button
+                    id="label"
+                    onClick={changeStatus}
+                    className="control-btn"
+                  >
+                    Attach label
+                  </button>
+                  <button
+                    id="pickup"
+                    onClick={changeStatus}
+                    className="control-btn"
+                  >
+                    Parcel picked up
+                  </button>
+                  <button
+                    id="delivered"
+                    onClick={changeStatus}
+                    className="control-btn"
+                  >
+                    Parcel delivered
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </Tracking>
@@ -94,3 +230,10 @@ const TrackingDetail = props => {
 };
 
 export default TrackingDetail;
+
+/*
+ * EXP
+ * RFP
+ * TRN
+ * DEL
+ */
