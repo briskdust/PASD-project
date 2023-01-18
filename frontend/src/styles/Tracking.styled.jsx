@@ -6,6 +6,39 @@ const Tracking = styled.div`
   justify-content: center;
   margin-top: 40px;
 
+  .labelContainer {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  button.labelButton {
+    background-color: khaki;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: baseline;
+  }
+
+  p.labelP {
+    margin: 10px;
+  }
+
   .container {
     border-radius: 10px;
     background-color: white;

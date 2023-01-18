@@ -161,11 +161,17 @@ const TrackingDetail = props => {
 
   return (
     <>
-      <label htmlFor="deliver-id">Deliver ID: </label>
-      <input ref={deliveryRef} id="deliver-id" type="text" />
-      <label htmlFor="add-label">Attach label: </label>
-      <input type="file" />
-      <button onClick={searchDelivery}>search</button>
+      <Tracking>
+        <div className="labelContainer">
+          <p className="labelP"><label htmlFor="deliver-id">Deliver ID: </label>
+          <input ref={deliveryRef} id="deliver-id" type="text" /></p>
+          <p className="labelP"><label htmlFor="add-label">Attach label: </label>
+          <input type="file" /></p>
+          
+          <button className="labelButton" onClick={searchDelivery}>search</button>
+        </div>
+      </Tracking>
+      
       {JSON.stringify(delivery) === "{}" ? (
         ""
       ) : (
