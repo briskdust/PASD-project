@@ -32,7 +32,7 @@ const Menu = styled.div`
       color: white;
       border: none;
       cursor: pointer;
-      margin-left: 1080px;
+      margin-left: 520px;
     }
   }
 

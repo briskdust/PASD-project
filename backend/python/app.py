@@ -3,7 +3,7 @@ import requests
 from flask import Flask, request
 from flask_cors import CORS
 
-label_file = {'labelFile': open('Fragile.pdf', 'rb')}
+label_file = {'labelFile': open('/Users/oscar/Documents/GitHub/PASD-project/backend/python/Fragile.pdf', 'rb')}
 
 app = Flask(__name__)
 CORS(app)

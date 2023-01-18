@@ -125,6 +125,8 @@ const Tracking = styled.div`
 
   .control-set {
     margin-top: 5px;
+    position: absolute;
+    top:0%;
   }
 
   .control-btn {
