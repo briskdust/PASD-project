@@ -4,7 +4,7 @@ import sanityClient from "../client";
 import axios from "axios";
 
 const TrackingDetail = props => {
-  axios.defaults.url = "http://localhost:5000";
+  axios.defaults.baseURL = "http://localhost:5000";
   const [delivery, setDelivery] = useState({});
   const [dest, setDest] = useState("");
   const deliveryRef = useRef("");
@@ -163,15 +163,21 @@ const TrackingDetail = props => {
     <>
       <Tracking>
         <div className="labelContainer">
-          <p className="labelP"><label htmlFor="deliver-id">Deliver ID: </label>
-          <input ref={deliveryRef} id="deliver-id" type="text" /></p>
-          <p className="labelP"><label htmlFor="add-label">Attach label: </label>
-          <input type="file" /></p>
-          
-          <button className="labelButton" onClick={searchDelivery}>search</button>
+          <p className="labelP">
+            <label htmlFor="deliver-id">Deliver ID: </label>
+            <input ref={deliveryRef} id="deliver-id" type="text" />
+          </p>
+          <p className="labelP">
+            <label htmlFor="add-label">Attach label: </label>
+            <input type="file" />
+          </p>
+
+          <button className="labelButton" onClick={searchDelivery}>
+            search
+          </button>
         </div>
       </Tracking>
-      
+
       {JSON.stringify(delivery) === "{}" ? (
         ""
       ) : (

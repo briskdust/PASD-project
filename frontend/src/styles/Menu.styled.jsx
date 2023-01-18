@@ -77,7 +77,7 @@ const Menu = styled.div`
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    margin-top: 70px;
+    margin-top: 90px;
   }
 
   .header {
