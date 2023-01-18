@@ -115,11 +115,13 @@ const Delivery = props => {
     setDropOffDuration(results.routes[0].legs[1].duration.text);
     const totalDistance =
       (results.routes[0].legs[0].distance.value +
-        results.routes[0].legs[1].distance.value) /
+        results.routes[0].legs[1].distance.value + 
+        results.routes[0].legs[2].distance.value) /
       1000;
     const totalDuration =
       results.routes[0].legs[0].duration.value +
-      results.routes[0].legs[1].duration.value;
+      results.routes[0].legs[1].duration.value +
+      results.routes[0].legs[2].duration.value;
     setTotalDistance(totalDistance.toFixed(0) + " km");
 
     const hours = Math.floor(totalDuration / 3600);
