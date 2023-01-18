@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PaymentStyle from "../styles/PaymentStyle.styled";
 
-const Payment = () => {
+const Payment = props => {
   const mcard_img =
     "https://dl.dropboxusercontent.com/s/2vbqk5lcpi7hjoc/MasterCard_Logo.svg.png";
 
@@ -30,6 +30,10 @@ const Payment = () => {
       default:
         setImg(express_img);
     }
+  };
+
+  const closeModal = () => {
+    props.close();
   };
 
   return (
@@ -78,7 +82,9 @@ const Payment = () => {
             </td>
           </tr>
         </table>
-        <button className="pay-btn">Checkout</button>
+        <button onClick={closeModal} className="pay-btn">
+          Checkout
+        </button>
       </div>
     </PaymentStyle>
   );

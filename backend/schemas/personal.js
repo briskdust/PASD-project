@@ -5,9 +5,10 @@ export default {
   fields: [
     {
       name: 'id',
-      type: 'number',
+      type: 'string',
       title: 'ID',
     },
+    {name: 'status', type: 'string', title: 'Status'},
     {
       name: 'is_breakable',
       type: 'boolean',

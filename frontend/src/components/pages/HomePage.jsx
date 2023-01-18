@@ -141,7 +141,9 @@ const HomePage = () => {
             orders.length > 0 && ( // show all the order IDs here
               <RegisterDelivery orders={orders} />
             )}
-          {currentTab === "tracking" && <TrackingDetail />}
+          {currentTab === "tracking" && (
+            <TrackingDetail userType={isLoggedIn} />
+          )}
           {currentTab === "contact" && <ContactForm />}
           {currentTab === "delivery" && isLoggedIn === "DRIVER" && <Delivery />}
           {currentTab === "delivery" && isLoggedIn === "" && <DeliveryUser />}
