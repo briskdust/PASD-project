@@ -34,7 +34,6 @@ const Delivery = props => {
   const [duration, setDuration] = useState("");
   const [totalDuration, setTotalDuration] = useState("");
   const [dropOffDuration, setDropOffDuration] = useState("");
-  const [directions, setDirections] = useState({});
 
   const idRef = useRef();
 
@@ -58,39 +57,57 @@ const Delivery = props => {
     }
     // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
-    await sanityClient
-      .fetch(`*[_type == "delivery"&&id==${idRef.current.value}]`)
-      .then(data => {
-        if (JSON.stringify(data) === "[]") {
-          alert("This is not a valid delivery");
-          return;
-        }
-        setDelivery(data[0]);
+    var database;
+    var orderId;
+    if (idRef.current.value.toString().length < 10) {
+      database = "delivery";
+      let prom1 = new Promise(function (res1) {
+        sanityClient
+          .fetch(`*[_type == "delivery"&&id==${idRef.current.value}]`)
+          .then(data => {
+            if (JSON.stringify(data) === "[]") {
+              alert("This is not a valid delivery");
+              return;
+            }
+            setDelivery(data[0]);
+            if (delivery.status === "REJ") {
+              alert("This is not a valid delivery");
+              return;
+            } else if (delivery.status === "EXP") {
+              clearRoute();
+              alert("This delivery is not yet ready for pickup.\n\nCheck back later.");
+              return;
+            }
+            res1(data[0].order_id);
+          });
       });
-    if (delivery.status === "REJ") {
-      alert("This is not a valid delivery");
-      return;
-    } else if (delivery.status === "EXP") {
-      clearRoute();
-      alert("This delivery is not yet ready for pickup.\n\nCheck back later.");
-      return;
+      sanityClient
+        .fetch(`*[_type == "order"&&id==${await prom1}]`)
+        .then(data => {
+          console.log(data);
+          setOrig(data[0].sender_info);
+          setDest(data[0].receiver_info);
+        });
+    } else {
+      database = "personal"
+      orderId = idRef.current.value;
+      sanityClient
+        .fetch(`*[_type == "${database}"&&id=="${orderId}"]`)
+        .then(data => {
+          console.log(data[0]);
+          setOrig(data[0].sender_info);
+          setDest(data[0].receiver_info);
+        });
     }
-    sanityClient
-      .fetch(`*[_type == "order"&&id==${delivery.order_id}]`)
-      .then(data => {
-        console.log(data[0].sender_info);
-        setOrig(data[0].sender_info);
-        setDest(data[0].receiver_info);
-      });
 
     const results = await directionsService.route({
       origin: location,
-      waypoints: [{ location: dataOrig.zipcode }],
+      waypoints: [{ location: dataOrig.zipcode }, { location: warehouse }],
       destination: dataDest.zipcode,
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
     });
-    
+
     setDirectionsResponse(results);
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
