@@ -36,6 +36,50 @@ const Menu = styled.div`
     }
   }
 
+  .fetch-orders {
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: white;
+    background: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 17px;
+    padding: 7px 12px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+    min-width: 120px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 40px;
+  }
+
+  .register-delivery {
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: white;
+    background: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 17px;
+    padding: 7px 12px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+    min-width: 120px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 70px;
+  }
+
   .header {
     display: flex;
     align-items: center;

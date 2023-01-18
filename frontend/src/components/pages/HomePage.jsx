@@ -133,9 +133,11 @@ const HomePage = () => {
         <div className="content">
           {currentTab === "place-order" && <PlaceOrder />}
           {currentTab === "register-order" && (
-            <button onClick={getOrders}>fetch all orders</button>
+            <button className="fetch-orders" onClick={getOrders}>
+              fetch all orders
+            </button>
           )}
-          {currentTab === "order" &&
+          {currentTab === "register-order" &&
             orders.length > 0 && ( // show all the order IDs here
               <RegisterDelivery orders={orders} />
             )}

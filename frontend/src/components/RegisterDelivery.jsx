@@ -49,7 +49,11 @@ const RegisterDelivery = props => {
     }
   };
 
-  return <button onClick={registerOrder}>register all orders</button>;
+  return (
+    <button className="register-delivery" onClick={registerOrder}>
+      register all orders
+    </button>
+  );
 };
 
 export default RegisterDelivery;
