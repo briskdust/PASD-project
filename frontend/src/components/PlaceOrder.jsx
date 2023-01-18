@@ -7,7 +7,7 @@ import PlaceStyle from "../styles/PlaceStyle.styled";
 import PaymentModal from "./PaymentModal";
 
 const PlaceOrder = () => {
-  const [totalPrice, setPrice] = useState(0);
+  const [totalPrice, setPrice] = useState();
   const [isClicked, setClicked] = useState(false);
 
   const breakableRef = useRef();
@@ -123,46 +123,66 @@ const PlaceOrder = () => {
     <PlaceStyle>
       <form>
         <input ref={breakableRef} type="checkbox" id="is-breakable" />
-        <label htmlFor="is-breakable">Breakable</label>
+        <label className="blabel" htmlFor="is-breakable">
+          Breakable
+        </label>
         <input ref={perishableRef} type="checkbox" id="is-perishable" />
-        <label htmlFor="is-perishable">Perishable</label>
+        <label className="blabel" htmlFor="is-perishable">
+          Perishable
+        </label>
         <input ref={privateRef} type="checkbox" id="is-private" />
-        <label htmlFor="is-private">Private</label>
+        <label className="blabel" htmlFor="is-private">
+          Private
+        </label>
         <input ref={premiumRef} type="checkbox" id="is-premium" />
-        <label htmlFor="is-premium">Premium</label>
+        <label className="blabel" htmlFor="is-premium">
+          Premium
+        </label>
+        <br />
         <label htmlFor="length">Length in mm: </label>
         <input ref={lengthRef} type="number" id="length" />
+        <br />
         <label htmlFor="width">Width in mm: </label>
         <input ref={widthRef} type="number" id="width" />
+        <br />
         <label htmlFor="height">Height in mm: </label>
         <input ref={heightRef} type="number" id="height" />
-
+        <div className="separator"></div>
         <h2 className="sender-info">Sender Info:</h2>
         <label htmlFor="sender-name">Name: </label>
         <input ref={senderNameRef} type="text" id="sender-name" />
+        <br />
         <label htmlFor="sender-email">Email: </label>
         <input ref={senderEmailRef} type="text" id="sender-email" />
+        <br />
         <label htmlFor="street">Street and number: </label>
         <input ref={senderStreetRef} type="text" id="street" />
+        <br />
         <label htmlFor="zipcode">Zipcode: </label>
         <input ref={senderZipRef} type="text" id="zipcode" />
+        <br />
         <label htmlFor="city">City: </label>
         <input ref={senderCityRef} type="text" id="city" />
+        <br />
         <label htmlFor="country">Country</label>
         <input ref={senderCountryRef} type="text" id="country" />
-
+        <div className="separator"></div>
         <h2 className="receiver-info">Recipient Info:</h2>
         <label htmlFor="rec-name">Name: </label>
         <input ref={recNameRef} type="text" id="rec-name" />
+        <br />
         <label htmlFor="rec-street">Street and number: </label>
         <input ref={recStreetRef} type="text" id="rec-street" />
+        <br />
         <label htmlFor="rec-zipcode">Zipcode: </label>
         <input ref={recZipRef} type="text" id="rec-zipcode" />
+        <br />
         <label htmlFor="rec-city">City: </label>
         <input ref={recCityRef} type="text" id="rec-city" />
+        <br />
         <label htmlFor="rec-country">Country</label>
         <input ref={recCountryRef} type="text" id="rec-country" />
-
+        <br />
         <label>Upload label: </label>
         <input type="file" />
         <button onClick={priceAlgo}>Calculate price</button>
